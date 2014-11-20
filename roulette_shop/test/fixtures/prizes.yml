@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prize_id: 1
+  title: PlasmaTV
+  description: 14 inches TV
+
+two:
+  prize_id: 2
+  title: Laptop
+  description: HP personal computer

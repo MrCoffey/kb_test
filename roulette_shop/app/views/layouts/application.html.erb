@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RouletteShop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <body>
+    <header class="banner navbar navbar-static-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="navbar-brand">
+            <a title="tarefasimple" href="/">
+              <%= image_tag "logo.png", alt: "Please change the logo" %>
+            </a>
+          </div><!--Fin container -->
+          
+          <button data-target=".nav-responsive" data-toggle="collapse" type="button" class="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+        </div><!--Fin navbar -->
+
+        <nav class="nav-main hidden-xs" role="navigation">
+          <ul id="menu-main" class="nav navbar-nav">
+
+            <li class= "divider"></li>
+            <% if user_signed_in? %>
+
+              <li class="dropdown">
+                <%= link_to current_user.name , edit_user_registration_path, html: {class: "dropdown-toggle"} %>
+           
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+                    <li><%= link_to 'Prizes', prizes_path %></li>
+                  </ul>
+              </li>
+
+            <li>
+              <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+            </li>
+
+            <% else %>
+              <li class="active">
+                <%= link_to 'Sign Up', new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'Log In', new_user_session_path %>
+              </li>
+            <% end %>
+          </ul>
+
+        <!-- Responsive Nav -->
+        <div class="visible-xs">
+          <nav class="nav-responsive collapse" role="navigation">
+            <ul class="nav">
+            <li class= "divider"></li>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to current_user.name , edit_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+              </li>
+              <% else %>
+                <li class="active">
+                <%= link_to 'Regístrate', new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'Iniciar Sesión', new_user_session_path %>
+              </li>
+            <% end %>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </header>
+      <div class="row">
+        <div class="columns large-12"></div>
+        <% flash.each do |type, message| %>
+        <div class="container">
+          <div class="span4">
+            <div data-alert class="alert <%= flash_class(type) %>">
+              <%= message %>
+              <button type="button" class="close" data-dismiss="alert">×</button>
+            </div>
+          <% end %>
+          </div>
+        </div>
+
+          <%= yield %>
+        </div>
+      </div>
+ <!-- Footer Widgets -->
+    <footer>
+      <div class="footer-widgets">
+        <div class="container">
+          <div class="row">
+
+            <section class="col-sm-3">
+              <div>
+                <h3>The Roulette Shop</h3>
+                <ul>
+                  <li>
+                    <a title="Permanent link to Standard Post Format">
+                    Here is the only place on internet where you can win great prizes <strong>just</strong> for subcribing.</a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section class="col-sm-3">
+              <div>
+                <h3>Links</h3>
+                <ul>
+                  <li>
+                   <a href="/" rel="bookmark" title="Permanent link to Unlimited Colors">Inicio</a>
+                  </li>
+                  <li>
+                    <a href="#" rel="bookmark" title="Permanent link to Multiple installs on one domain">FAQ</a>
+                  </li>
+                  <li>
+                   <a href="#" rel="bookmark" title="Permanent link to Import and Export Extension">Terms and Conditions</a>
+                  </li>
+                  </ul>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="footer-info">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="copyright">Copyright 2014. Powered by <a >Roulette Shop</a></p>       
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+  </body>
+</html>
