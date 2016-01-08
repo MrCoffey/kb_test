@@ -19,12 +19,11 @@ end
 
 anagram_words = AnagramWords.take_anagrams
 
-  #Display each group of anagrams
-  anagram_words.each do |key, words|
-    output = '*Anagram set '
-    words.each do |word|
-      output += word + ', '
-    end
-    puts output
+#Display each group of anagrams
+anagram_words.each do |key, words|
+  output = '*Anagram set '
+  words.each do |word|
+    output += word + ', '
   end
-
+  puts output
+end
